@@ -1,0 +1,12 @@
+# System
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+.vs/
+.vscode/
+
+# Pakcage Manager
+node_modules
+
