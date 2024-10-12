@@ -30,22 +30,22 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
 
   // console.log( JSON.stringify( json, null, 2 ) );
 
-  const char = "a"; // string
+  // const char = "a"; // string
   // const char = "a" "b"; // 문법적으로 안됨
-  const chars = ["a", "b", "c"]; // string[]
+  // const chars = ["a", "b", "c"]; // string[]
 
   // return 할 수 있는 유형
   // 1. Primitive 타입 데이터 (number, string, boolean)
   // 2. JSX Node
   // 3. 1 혹은 2로 구성된 배열
   // Array.map
-  return [
+  return (
     <div className="w-[500px] mx-auto">
       <div className="flex justify-between">
         {/* <a href={'?targetDt=' + dayjs(targetDt).subtract(1, 'day').format('YYYYMMDD')}>이전</a> */}
         {/* <Link></Link> */}
         {/* <button>이전</button> */}
-        <PrevButton targetDt={targetDt}/>
+        <PrevButton targetDt={targetDt} />
         {dayjs(targetDt).format('YYYY년 MM월 DD일')}
         <button>다음</button>
       </div>
@@ -56,7 +56,7 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
               <Link href={`/movie/${item.movieCd}`}>
                 {item.movieNm}
               </Link>
-              { item.rankOldAndNew === 'NEW' && <span className="ml-1 text-xs text-red-500">N</span> }
+              {item.rankOldAndNew === 'NEW' && <span className="ml-1 text-xs text-red-500">N</span>}
               {/*
                 <If condition={ item.rankOldAndNew === 'NEW' }>
                   <Then>N</Then>
@@ -73,7 +73,7 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
       </ol>
       {/* <pre><code>{JSON.stringify(json, null, 2)}</code></pre> */}
     </div>
-  ];
+  );
 }
 
 // 자바스크립트 값 할당 팁
