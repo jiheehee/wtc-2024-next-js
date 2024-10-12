@@ -1,7 +1,23 @@
-export default async function Home() {
+// 동적 주소 처리 방식
+// 1. query string / search params 주소?key=value&key2=value2 (url encoded / encoded url)
+// 2. url params
+
+import dayjs from "dayjs";
+
+// locahost:3000/?targetDt=20241009
+
+type Props = {
+  searchParams: {
+    targetDt?: string;
+  }
+}
+
+const today = dayjs().subtract(1, 'day').format('YYYYMMDD'); // 오늘 보다 1일 이전 날짜를 YYYYMMDD 형식으로 출력
+
+export default async function Home({ searchParams: { targetDt = today } }:Props) {
   // 데이터 로드
   const key = '3801c7437930ca3e5a37fd86b59383ea';
-  const targetDt = '20241011';
+  // const targetDt = '20241011';
   const baseUrl = 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json';
   const url = `${baseUrl}?key=${key}&targetDt=${targetDt}`;
 
