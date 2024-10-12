@@ -4,6 +4,7 @@
 
 import dayjs from "dayjs";
 import { PrevButton } from "./PrevButton";
+import Link from "next/link";
 
 // locahost:3000/?targetDt=20241009
 
@@ -52,7 +53,9 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
         {
           json.boxOfficeResult.dailyBoxOfficeList.map((item: ItemType) => (
             <li key={item.rank}>{item.rank}위 -{' '}
-              {item.movieNm}
+              <Link href={`/movie/${item.movieCd}`}>
+                {item.movieNm}
+              </Link>
               { item.rankOldAndNew === 'NEW' && <span className="ml-1 text-xs text-red-500">N</span> }
               {/*
                 <If condition={ item.rankOldAndNew === 'NEW' }>
