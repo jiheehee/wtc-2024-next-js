@@ -27,7 +27,7 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
   // json 파싱
   const json: ResponseType = await response.json();
 
-  console.log( JSON.stringify( json, null, 2 ) );
+  // console.log( JSON.stringify( json, null, 2 ) );
 
   const char = "a"; // string
   // const char = "a" "b"; // 문법적으로 안됨
@@ -51,7 +51,15 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
       <ol className="divide-y *:py-4 mt-4">
         {
           json.boxOfficeResult.dailyBoxOfficeList.map((item: ItemType) => (
-            <li key={item.rank}>{item.rank}위 - {item.movieNm} <span className="text-xs">({item.rankOldAndNew})</span></li>
+            <li key={item.rank}>{item.rank}위 -{' '}
+              {item.movieNm}
+              { item.rankOldAndNew === 'NEW' && <span className="ml-1 text-xs text-red-500">N</span> }
+              {/*
+                <If condition={ item.rankOldAndNew === 'NEW' }>
+                  <Then>N</Then>
+                </If>
+              */}
+            </li>
           ))
           // [
           //   <li>{json.boxOfficeResult.dailyBoxOfficeList[0].movieNm}</li>,
@@ -60,10 +68,14 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
           // ]
         }
       </ol>
-      <pre><code>{JSON.stringify(json, null, 2)}</code></pre>
+      {/* <pre><code>{JSON.stringify(json, null, 2)}</code></pre> */}
     </div>
   ];
 }
+
+// 자바스크립트 값 할당 팁
+// const key = condition || 'value'; // condition 이 거짓일 떄 'value' 가 할당
+// const key = condition ? '1' : '2'; // 삼항연산
 
 type ResponseType = {
   boxOfficeResult: {
