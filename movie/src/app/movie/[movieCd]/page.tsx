@@ -11,7 +11,7 @@ export default async function Page({params: {movieCd}}:Props) {
     const response = await fetch( url );
     const json: ResponseType = await response.json();
     return <>
-        <ul>
+        <ul className="w-[500px] mx-auto">
             <li>영화명 : {json.movieInfoResult.movieInfo.movieNm}</li>
             <li>상영시간 : {json.movieInfoResult.movieInfo.showTm}분</li>
             <li>출연 : 

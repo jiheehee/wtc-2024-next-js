@@ -15,5 +15,6 @@ export function PrevButton({targetDt}:Props) {
     return <button onClick={()=>{
         // const date = searchParams.get('targetDt');
         router.push(`?targetDt=${dayjs(targetDt).subtract(1, 'day').format('YYYYMMDD') }`);
+        // location.href = `?targetDt=${dayjs(targetDt).subtract(1, 'day').format('YYYYMMDD') }`;
     }}>이전</button>
 }
