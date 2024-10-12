@@ -11,9 +11,22 @@ export default async function Page({params: {movieCd}}:Props) {
     const response = await fetch( url );
     const json: ResponseType = await response.json();
     return <>
-        영화 정보 : {movieCd}
+        <ul>
+            <li>영화명 : {json.movieInfoResult.movieInfo.movieNm}</li>
+            <li>상영시간 : {json.movieInfoResult.movieInfo.showTm}분</li>
+            <li>출연 : 
+                {json.movieInfoResult.movieInfo.actors.map( actor => (
+                    <span className="inline-block mr-2">{actor.peopleNm}</span>
+                ))}
+            </li>
+            <li>감독 :
+                {json.movieInfoResult.movieInfo.directors.map(directors => (
+                    <span className="inline-block mr-2">{directors.peopleNm}</span>
+                ))}
+            </li>
+        </ul>
     
-        <pre><code>{JSON.stringify(json, null, 2)}</code></pre>
+        {/* <pre><code>{JSON.stringify(json, null, 2)}</code></pre> */}
     </>
 }
 
@@ -29,38 +42,38 @@ type ResponseType = {
             openDt: string,
             prdtStatNm: string,
             typeNm: string,
+            nations: NationType[],
+            genres: ({ genreNm: string })[],
+            directors: ({
+                "peopleNm": string,
+                "peopleNmEn": string,
+            })[],
+            actors: ({
+                "peopleNm": string,
+                "peopleNmEn": string,
+                "cast": string,
+                "castEn": string,
+            })[],
+            showTypes: ({
+                "showTypeGroupNm": string,
+                "showTypeNm": string,
+            })[],
+            companys: ({
+                "companyCd": string,
+                "companyNm": string,
+                "companyNmEn": string,
+                "companyPartNm": string,
+            })[],
+            audits: ({
+                "auditNo": string,
+                "watchGradeNm": string
+            })[],
+            staffs: ({
+                "peopleNm": string,
+                "peopleNmEn": string,
+                "staffRoleNm": string,
+            })[]
         },
-        nations: NationType[],
-        genres: ({ genreNm: string })[],
-        directors: ({
-            "peopleNm": string,
-            "peopleNmEn": string,
-        })[],
-        actors: ({
-            "peopleNm": string,
-            "peopleNmEn": string,
-            "cast": string,
-            "castEn": string,
-        })[],
-        showTypes: ({
-            "showTypeGroupNm": string,
-            "showTypeNm": string,
-        })[],
-        companys: ({
-            "companyCd": string,
-            "companyNm": string,
-            "companyNmEn": string,
-            "companyPartNm": string,
-        })[],
-        audits: ({
-            "auditNo": string,
-            "watchGradeNm": string
-        })[],
-        staffs: ({
-            "peopleNm": string,
-            "peopleNmEn": string,
-            "staffRoleNm": string,
-        })[]
     }
 }
 
