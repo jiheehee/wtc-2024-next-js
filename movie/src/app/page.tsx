@@ -25,7 +25,7 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
   // 요청
   const response = await fetch(url);
   // json 파싱
-  const json = await response.json();
+  const json: ResponseType = await response.json();
 
   console.log( JSON.stringify( json, null, 2 ) );
 
@@ -50,8 +50,8 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
       </div>
       <ol className="divide-y *:py-4 mt-4">
         {
-          json.boxOfficeResult.dailyBoxOfficeList.map((item: any) => (
-            <li key={item.rank}>{item.rank}위 - {item.movieNm}</li>
+          json.boxOfficeResult.dailyBoxOfficeList.map((item: ItemType) => (
+            <li key={item.rank}>{item.rank}위 - {item.movieNm} <span className="text-xs">({item.rankOldAndNew})</span></li>
           ))
           // [
           //   <li>{json.boxOfficeResult.dailyBoxOfficeList[0].movieNm}</li>,
@@ -60,7 +60,36 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
           // ]
         }
       </ol>
-      {/* <pre><code>{JSON.stringify(json, null, 2)}</code></pre> */}
+      <pre><code>{JSON.stringify(json, null, 2)}</code></pre>
     </div>
   ];
+}
+
+type ResponseType = {
+  boxOfficeResult: {
+    boxofficeType: string,
+    showRange: string,
+    dailyBoxOfficeList: ItemType[],
+  }
+}
+
+type ItemType = {
+  rnum: string;
+  rank: string;
+  rankInten: string;
+  rankOldAndNew: string;
+  movieCd: string;
+  movieNm: string;
+  openDt: string;
+  salesAmt: string;
+  salesShare: string;
+  salesInten: string;
+  salesChange: string;
+  salesAcc: string;
+  audiCnt: string;
+  audiInten: string;
+  audiChange: string;
+  audiAcc: string;
+  scrnCnt: string;
+  showCnt: string;
 }
