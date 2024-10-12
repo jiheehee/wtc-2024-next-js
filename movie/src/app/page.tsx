@@ -3,6 +3,7 @@
 // 2. url params
 
 import dayjs from "dayjs";
+import { PrevButton } from "./PrevButton";
 
 // locahost:3000/?targetDt=20241009
 
@@ -38,8 +39,16 @@ export default async function Home({ searchParams: { targetDt = today } }:Props)
   // 3. 1 혹은 2로 구성된 배열
   // Array.map
   return [
-    <div className="">
-      <ol>
+    <div className="w-[500px] mx-auto">
+      <div className="flex justify-between">
+        {/* <a href={'?targetDt=' + dayjs(targetDt).subtract(1, 'day').format('YYYYMMDD')}>이전</a> */}
+        {/* <Link></Link> */}
+        {/* <button>이전</button> */}
+        <PrevButton targetDt={targetDt}/>
+        {dayjs(targetDt).format('YYYY년 MM월 DD일')}
+        <button>다음</button>
+      </div>
+      <ol className="divide-y *:py-4 mt-4">
         {
           json.boxOfficeResult.dailyBoxOfficeList.map((item: any) => (
             <li key={item.rank}>{item.rank}위 - {item.movieNm}</li>

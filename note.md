@@ -57,3 +57,30 @@ Next.js 에서는 모든 컴포넌트를 기본적으로 서버 컴포넌트로 
 import { ComponentName } from '../../components/atoms/Button.tsx';
 // alias 사용 할 경우
 import { ComponentName } from '@/components/atoms/Button.tsx';
+
+## 프로젝트 경로 관리
+
+- / : 작업물을 모아놓은 상위 디렉토리
+  - /project-name
+    - /package.json
+  - /first-project
+    - /package.json
+    - /second-project
+      - /package.json : 상위 디렉토리에도 package.json 이 있고, 현재 디렉토리에 package.json 이 또 생김
+  - /third-project
+    - /package.json
+
+## 클라이언트 컴포넌트의 위치
+
+- /page-name
+  - page.tsx
+  - PrevButton.tsx
+  - NextButton.tsx
+
+- /app
+  - /page-name
+    - page.tsx
+- /componnents
+  - /ui
+    - PrevButton.tsx
+    - NextButton.tsx
