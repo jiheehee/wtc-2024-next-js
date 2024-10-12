@@ -106,3 +106,13 @@ interface ExtendedProps extends IdProps {
   key: string;
 }
 // { id, key }
+
+## 배포
+
+### Node.js 직접 배포
+
+1. npm run build
+2. npm run start
+  2-1. pm2 같은 Process Manager 이용
+3. apache, nginx 80 -> 3000 연결되도록 proxy 처리
+
