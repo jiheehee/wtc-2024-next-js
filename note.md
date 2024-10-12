@@ -84,3 +84,25 @@ import { ComponentName } from '@/components/atoms/Button.tsx';
   - /ui
     - PrevButton.tsx
     - NextButton.tsx
+
+## interface or type
+
+둘 다 비슷합니다
+
+type IdProps = {
+  id: string;
+}
+
+interface IdProps {
+  id: string;
+}
+
+type ExtendedProps = IdProps & {
+  key: string;
+}
+// { id, key }
+
+interface ExtendedProps extends IdProps {
+  key: string;
+}
+// { id, key }

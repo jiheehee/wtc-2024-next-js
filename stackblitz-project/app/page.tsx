@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { NewComponent } from './NewComponent';
+import Link from 'next/link';
 
 // 클래스 컴포넌트 -> 필요할 때
 // 함수 컴포넌트
@@ -16,6 +17,9 @@ export default async function Home() {
       className={'flex flex-col min-h-screen items-center justify-between p-24'}
       // style={inlineStyle}
     >
+      <div>
+        <Link href='/page-2'>Go Page 2</Link>
+      </div>
       <div>접속 시각 : {new Date().toISOString()}</div>
       <NewComponent />
     </main>

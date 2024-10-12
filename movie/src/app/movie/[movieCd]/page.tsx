@@ -1,3 +1,14 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: '영화 상세 정보: 영화 위키',
+    description: '일별 박스 오피스를 확인하고 영화 정보와 영화인 정보를 조회할 수 있습니다',
+    openGraph: {
+        title: '영화 상세 정보: 영화 위키',
+        description: '일별 박스 오피스를 확인하고 영화 정보와 영화인 정보를 조회할 수 있습니다',
+    }
+}
+
 type Props = {
     params: {
         movieCd: string;
@@ -16,12 +27,12 @@ export default async function Page({params: {movieCd}}:Props) {
             <li>상영시간 : {json.movieInfoResult.movieInfo.showTm}분</li>
             <li>출연 : 
                 {json.movieInfoResult.movieInfo.actors.map( actor => (
-                    <span className="inline-block mr-2">{actor.peopleNm}</span>
+                    <span className="inline-block mr-2" key={actor.peopleNm}>{actor.peopleNm}</span>
                 ))}
             </li>
             <li>감독 :
                 {json.movieInfoResult.movieInfo.directors.map(directors => (
-                    <span className="inline-block mr-2">{directors.peopleNm}</span>
+                    <span className="inline-block mr-2" key={directors.peopleNm}>{directors.peopleNm}</span>
                 ))}
             </li>
         </ul>
